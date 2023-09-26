@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { PrismaClient } from "@prisma/client";
-import prisma from "../../prisma/db";
+import { prisma } from "../../prisma/db";
 
 export type Context = {
   prisma: PrismaClient;
@@ -14,11 +14,13 @@ const resolvers = {
 };
 const typeDefs = `#graphql
     type Query {
-        hello: String
+    hello: String
     }
 
 `;
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer<Context>({ typeDefs, resolvers });
 
-export default startServerAndCreateNextHandler(apolloServer);
+export default startServerAndCreateNextHandler(apolloServer, {
+  context: async (req, res) => ({ req, res, prisma }),
+});
