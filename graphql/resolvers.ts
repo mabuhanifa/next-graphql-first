@@ -10,4 +10,19 @@ export const resolvers = {
       });
     },
   },
+
+  Mutation: {
+    addNovel: async (parent: any, args: any, context: Context) => {
+      const { title, image } = args;
+
+      const newNovel = await context.prisma.novel.create({
+        data: {
+          title,
+          image,
+        },
+      });
+
+      return newNovel;
+    },
+  },
 };

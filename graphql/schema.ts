@@ -21,6 +21,6 @@ export const typeDefs = `#graphql
     }
 
     type Mutation {
-        createNovel(title: String, image: String): Novel
+        addNovel(title: String, image: String): Novel
     }
 `;
