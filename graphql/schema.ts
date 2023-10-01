@@ -1,6 +1,26 @@
 export const typeDefs = `#graphql
+
+    type Novel{
+        id: ID!
+        title: String
+        image: String
+        createdAt: String
+        updatedAt: String
+        author: [Author]
+    }
+
+    type Author{
+        id: ID!
+        name: String
+        novelID:String
+    }
+
     type Query {
-        hello: String
-        message: String
+        novel(id:ID!): Novel 
+        novels: [Novel]
+    }
+
+    type Mutation {
+        createNovel(title: String, image: String): Novel
     }
 `;
