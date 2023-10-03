@@ -18,6 +18,7 @@ export const resolvers = {
       const newNovel = await context.prisma.novel.create({
         data: {
           title,
+
           image,
         },
       });
