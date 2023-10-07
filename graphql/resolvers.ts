@@ -31,8 +31,10 @@ export const resolvers = {
       where: {
         id: args.id,
       },
+
       data: {
         title: args.title,
+
         image: args.image,
       },
     });
