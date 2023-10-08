@@ -2,7 +2,7 @@ import { Context } from "@/pages/api/graphql";
 
 export const resolvers = {
   Query: {
-    novel: async (_parent: any, args: any, context: Context) => {
+    novel: async (parent: any, args: any, context: Context) => {
       return await context.prisma.novel.findUnique({
         where: {
           id: args.id,
@@ -43,6 +43,13 @@ export const resolvers = {
         title: args.title,
 
         image: args.image,
+      },
+    });
+  },
+  deleteNovel: async (_parent: any, args: any, context: Context) => {
+    return await context.prisma.novel.delete({
+      where: {
+        id: args.id,
       },
     });
   },
