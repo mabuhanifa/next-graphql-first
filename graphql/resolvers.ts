@@ -2,6 +2,13 @@ import { Context } from "@/pages/api/graphql";
 
 export const resolvers = {
   Query: {
+    novel: async (_parent: any, args: any, context: Context) => {
+      return await context.prisma.novel.findUnique({
+        where: {
+          id: args.id,
+        },
+      });
+    },
     novels: async (parent: any, args: any, context: Context) => {
       return context.prisma.novel.findMany({
         include: {
